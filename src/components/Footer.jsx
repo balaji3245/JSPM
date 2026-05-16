@@ -64,14 +64,6 @@ const Footer = () => {
         </div>
       </div>
 
-      <style jsx>{`
-        @media (max-width: 1024px) {
-          .footer-premium .container > div { grid-template-columns: 1fr 1fr !important; gap: 40px !important; }
-        }
-        @media (max-width: 600px) {
-          .footer-premium .container > div { grid-template-columns: 1fr !important; }
-        }
-      `}</style>
     </footer>
   );
 };

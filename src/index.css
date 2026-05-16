@@ -410,3 +410,34 @@ ul {
   .infographic { grid-template-columns: repeat(2, 1fr); }
   .floating-stats { display: none; }
 }
+/* Component Styles */
+.mobile-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
+
+@media (max-width: 1024px) {
+  .nav-links { display: none !important; }
+  .mobile-toggle { display: flex !important; }
+}
+
+.footer-premium .container > div {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+  gap: 80px;
+}
+
+@media (max-width: 1024px) {
+  .footer-premium .container > div {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 40px !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .footer-premium .container > div {
+    grid-template-columns: 1fr !important;
+  }
+}

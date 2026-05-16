@@ -70,12 +70,6 @@ const Navbar = () => {
         </div>
       )}
 
-      <style jsx>{`
-        @media (max-width: 1024px) {
-          .nav-links { display: none !important; }
-          .mobile-toggle { display: flex !important; flex-direction: column; }
-        }
-      `}</style>
     </nav>
   );
 };
