@@ -3,67 +3,65 @@ import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
-    <footer className="footer-premium">
+    <footer style={{ background: '#000', padding: '120px 0 60px', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
       <div className="container">
-        <div style={{ display: 'grid', gridTemplateColumns: '1.5fr 1fr 1fr 1.2fr', gap: '80px', paddingBottom: '80px' }}>
-          <div className="footer-col">
-            <div className="logo-container" style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '30px' }}>
-              <div style={{ width: '40px', height: '40px', background: 'var(--accent)', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: '800', color: 'var(--primary)' }}>J</div>
-              <h2 className="serif" style={{ fontSize: '1.6rem', color: 'white', margin: 0 }}>JSPM</h2>
+        <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1.5fr', gap: '80px', marginBottom: '100px' }}>
+          <div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '15px', marginBottom: '40px' }}>
+              <div style={{ width: '40px', height: '40px', background: 'var(--accent)', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: '900', color: '#000' }}>J</div>
+              <h2 style={{ fontSize: '1.8rem', color: 'white', margin: 0, letterSpacing: '3px' }}>JSPM</h2>
             </div>
-            <p style={{ lineHeight: '1.8', marginBottom: '30px' }}>
-              A global hub for academic excellence and innovation. Empowering the next generation of leaders with a future-ready curriculum and world-class infrastructure.
+            <p style={{ maxWidth: '350px', lineHeight: '1.8', fontSize: '1rem' }}>
+              A sanctuary of elite academic pursuit and global innovation. Defining the standard for futuristic education since 1998.
             </p>
-            <div style={{ display: 'flex', gap: '20px' }}>
-              {/* Premium Social Icons Placeholder */}
-              <div style={{ width: '40px', height: '40px', borderRadius: '50%', border: '1px solid rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', cursor: 'pointer', transition: 'var(--transition)' }} onMouseEnter={(e) => e.target.style.background = 'var(--accent)'} onMouseLeave={(e) => e.target.style.background = 'transparent'}>In</div>
-              <div style={{ width: '40px', height: '40px', borderRadius: '50%', border: '1px solid rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', cursor: 'pointer', transition: 'var(--transition)' }} onMouseEnter={(e) => e.target.style.background = 'var(--accent)'} onMouseLeave={(e) => e.target.style.background = 'transparent'}>Tw</div>
-              <div style={{ width: '40px', height: '40px', borderRadius: '50%', border: '1px solid rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white', cursor: 'pointer', transition: 'var(--transition)' }} onMouseEnter={(e) => e.target.style.background = 'var(--accent)'} onMouseLeave={(e) => e.target.style.background = 'transparent'}>Li</div>
+            <div style={{ display: 'flex', gap: '20px', marginTop: '40px' }}>
+              {['IN', 'TW', 'LI', 'FB'].map((social) => (
+                <div key={social} style={{ width: '45px', height: '45px', borderRadius: '50%', border: '1px solid rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.7rem', fontWeight: '800', color: 'white', cursor: 'pointer', transition: '0.3s' }} onMouseEnter={(e) => { e.target.style.background = 'white'; e.target.style.color = 'black'; }} onMouseLeave={(e) => { e.target.style.background = 'transparent'; e.target.style.color = 'white'; }}>
+                  {social}
+                </div>
+              ))}
             </div>
           </div>
 
-          <div className="footer-col">
-            <h4 className="serif" style={{ color: 'white', fontSize: '1.2rem', marginBottom: '30px' }}>Exploration</h4>
-            <ul style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
-              <li><Link to="/about" style={{ opacity: 0.7 }}>About University</Link></li>
-              <li><Link to="/courses" style={{ opacity: 0.7 }}>Academic Programs</Link></li>
-              <li><Link to="/admissions" style={{ opacity: 0.7 }}>Admissions 2026</Link></li>
-              <li><Link to="/research" style={{ opacity: 0.7 }}>Research Centers</Link></li>
-              <li><Link to="/campus" style={{ opacity: 0.7 }}>Campus Life</Link></li>
+          <div>
+            <h4 style={{ color: 'white', fontSize: '1rem', textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '40px' }}>Excellence</h4>
+            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '20px' }}>
+              <li><Link to="/about" style={{ color: 'var(--text-body)', textDecoration: 'none', transition: '0.3s' }} onMouseEnter={(e) => e.target.style.color = 'white'} onMouseLeave={(e) => e.target.style.color = 'var(--text-body)'}>Our Heritage</Link></li>
+              <li><Link to="/faculty" style={{ color: 'var(--text-body)', textDecoration: 'none', transition: '0.3s' }} onMouseEnter={(e) => e.target.style.color = 'white'} onMouseLeave={(e) => e.target.style.color = 'var(--text-body)'}>Elite Scholars</Link></li>
+              <li><Link to="/research" style={{ color: 'var(--text-body)', textDecoration: 'none', transition: '0.3s' }} onMouseEnter={(e) => e.target.style.color = 'white'} onMouseLeave={(e) => e.target.style.color = 'var(--text-body)'}>Research Hub</Link></li>
+              <li><Link to="/campus" style={{ color: 'var(--text-body)', textDecoration: 'none', transition: '0.3s' }} onMouseEnter={(e) => e.target.style.color = 'white'} onMouseLeave={(e) => e.target.style.color = 'var(--text-body)'}>Virtual Tour</Link></li>
             </ul>
           </div>
 
-          <div className="footer-col">
-            <h4 className="serif" style={{ color: 'white', fontSize: '1.2rem', marginBottom: '30px' }}>Resources</h4>
-            <ul style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}>
-              <li><a href="#" style={{ opacity: 0.7 }}>Student Portal</a></li>
-              <li><a href="#" style={{ opacity: 0.7 }}>Digital Library</a></li>
-              <li><a href="#" style={{ opacity: 0.7 }}>Career Services</a></li>
-              <li><a href="#" style={{ opacity: 0.7 }}>Scholarships</a></li>
-              <li><a href="#" style={{ opacity: 0.7 }}>Alumni Association</a></li>
+          <div>
+            <h4 style={{ color: 'white', fontSize: '1rem', textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '40px' }}>Pathways</h4>
+            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '20px' }}>
+              <li><Link to="/admissions" style={{ color: 'var(--text-body)', textDecoration: 'none', transition: '0.3s' }} onMouseEnter={(e) => e.target.style.color = 'white'} onMouseLeave={(e) => e.target.style.color = 'var(--text-body)'}>Admission 2026</Link></li>
+              <li><Link to="/courses" style={{ color: 'var(--text-body)', textDecoration: 'none', transition: '0.3s' }} onMouseEnter={(e) => e.target.style.color = 'white'} onMouseLeave={(e) => e.target.style.color = 'var(--text-body)'}>Elite Programs</Link></li>
+              <li><Link to="/scholarships" style={{ color: 'var(--text-body)', textDecoration: 'none', transition: '0.3s' }} onMouseEnter={(e) => e.target.style.color = 'white'} onMouseLeave={(e) => e.target.style.color = 'var(--text-body)'}>Scholarships</Link></li>
+              <li><Link to="/placements" style={{ color: 'var(--text-body)', textDecoration: 'none', transition: '0.3s' }} onMouseEnter={(e) => e.target.style.color = 'white'} onMouseLeave={(e) => e.target.style.color = 'var(--text-body)'}>Career Office</Link></li>
             </ul>
           </div>
 
-          <div className="footer-col">
-            <h4 className="serif" style={{ color: 'white', fontSize: '1.2rem', marginBottom: '30px' }}>Newsletter</h4>
-            <p style={{ fontSize: '0.9rem', marginBottom: '20px' }}>Subscribe to get the latest academic updates and event notices.</p>
-            <div style={{ display: 'flex', background: 'rgba(255,255,255,0.05)', padding: '5px', borderRadius: '10px' }}>
-              <input type="text" placeholder="Email Address" style={{ background: 'transparent', border: 'none', padding: '12px', color: 'white', flex: 1, outline: 'none' }} />
-              <button className="btn btn-accent" style={{ padding: '8px 20px', borderRadius: '8px' }}>Join</button>
+          <div>
+            <h4 style={{ color: 'white', fontSize: '1rem', textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '40px' }}>Intelligence</h4>
+            <p style={{ fontSize: '0.9rem', marginBottom: '25px' }}>Subscribe to our luxury academic newsletter for exclusive insights.</p>
+            <div style={{ position: 'relative' }}>
+              <input type="text" placeholder="Your Official Email" style={{ width: '100%', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', padding: '15px 20px', borderRadius: '100px', color: 'white', outline: 'none' }} />
+              <button style={{ position: 'absolute', right: '5px', top: '5px', bottom: '5px', padding: '0 25px', background: 'var(--accent)', border: 'none', borderRadius: '100px', fontWeight: '800', fontSize: '0.7rem', color: 'black' }}>JOIN</button>
             </div>
           </div>
         </div>
 
-        <div style={{ borderTop: '1px solid rgba(255,255,255,0.05)', paddingTop: '40px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.85rem' }}>
-          <p>&copy; {new Date().getFullYear()} JSPM University. Excellence in Global Education.</p>
-          <div style={{ display: 'flex', gap: '30px' }}>
-            <a href="#" style={{ opacity: 0.5 }}>Privacy Policy</a>
-            <a href="#" style={{ opacity: 0.5 }}>Terms of Service</a>
-            <a href="#" style={{ opacity: 0.5 }}>Sitemap</a>
+        <div style={{ borderTop: '1px solid rgba(255,255,255,0.05)', paddingTop: '60px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <p style={{ fontSize: '0.8rem', opacity: 0.4 }}>&copy; {new Date().getFullYear()} JSPM University. All Intellectual Rights Reserved.</p>
+          <div style={{ display: 'flex', gap: '40px', fontSize: '0.8rem', opacity: 0.4 }}>
+            <a href="#">Privacy Protocol</a>
+            <a href="#">Governance</a>
+            <a href="#">Sitemap</a>
           </div>
         </div>
       </div>
-
     </footer>
   );
 };

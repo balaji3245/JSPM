@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -8,7 +9,7 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 80);
+      setScrolled(window.scrollY > 50);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -21,56 +22,68 @@ const Navbar = () => {
     { name: 'Faculty', path: '/faculty' },
     { name: 'Campus', path: '/campus' },
     { name: 'Notices', path: '/notices' },
-    { name: 'Contact', path: '/contact' },
   ];
 
   return (
-    <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
-      <div className="container nav-container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
-        <Link to="/" className="logo-container" style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-          <div className="logo-icon" style={{ width: '45px', height: '45px', background: 'var(--accent)', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: '800', color: 'var(--primary)' }}>J</div>
-          <div className="logo-text">
-            <h2 className="serif" style={{ fontSize: '1.4rem', color: scrolled ? 'var(--primary)' : 'white', margin: 0 }}>JSPM</h2>
-            <p style={{ fontSize: '0.65rem', color: scrolled ? 'var(--text-muted)' : 'rgba(255,255,255,0.7)', textTransform: 'uppercase', letterSpacing: '1px', margin: 0 }}>University</p>
+    <>
+      <nav className={`glass-navbar ${scrolled ? 'scrolled' : ''}`}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
+          <Link to="/" className="logo-container" style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+            <div style={{ width: '35px', height: '35px', background: 'var(--accent)', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: '800', color: '#000' }}>J</div>
+            <h2 style={{ fontSize: '1.2rem', color: 'white', margin: 0, letterSpacing: '2px' }}>JSPM</h2>
+          </Link>
+
+          {/* Desktop Links */}
+          <div className="nav-links" style={{ display: 'flex', gap: '30px', alignItems: 'center' }}>
+            {navLinks.map((link) => (
+              <Link 
+                key={link.name} 
+                to={link.path} 
+                style={{ 
+                  color: location.pathname === link.path ? 'var(--accent)' : 'white',
+                  fontSize: '0.85rem',
+                  fontWeight: '500',
+                  textTransform: 'uppercase',
+                  letterSpacing: '1px',
+                  opacity: location.pathname === link.path ? 1 : 0.7,
+                  transition: '0.3s'
+                }}
+                onMouseEnter={(e) => e.target.style.opacity = 1}
+                onMouseLeave={(e) => e.target.style.opacity = (location.pathname === link.path ? 1 : 0.7)}
+              >
+                {link.name}
+              </Link>
+            ))}
+            <button className="btn-lux btn-lux-primary" style={{ padding: '10px 24px' }}>Apply Admission</button>
           </div>
-        </Link>
 
-        {/* Desktop Nav */}
-        <div className="nav-links" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-          {navLinks.map((link) => (
-            <Link
-              key={link.name}
-              to={link.path}
-              className={`nav-link ${location.pathname === link.path ? 'active' : ''}`}
-              style={{ color: scrolled ? 'var(--primary)' : 'white' }}
-            >
-              {link.name}
-            </Link>
-          ))}
-          <button className="btn btn-accent" style={{ marginLeft: '20px', padding: '10px 24px', fontSize: '0.85rem' }}>Apply Now</button>
+          {/* Mobile Menu Button */}
+          <div className="mobile-toggle" onClick={() => setMobileMenuOpen(true)} style={{ color: 'white', fontSize: '1.5rem', display: 'none' }}>☰</div>
         </div>
-
-        {/* Mobile Toggle */}
-        <div className="mobile-toggle" onClick={() => setMobileMenuOpen(!mobileMenuOpen)} style={{ display: 'none', cursor: 'pointer' }}>
-          <div style={{ width: '30px', height: '2px', background: scrolled ? 'var(--primary)' : 'white', marginBottom: '6px' }}></div>
-          <div style={{ width: '20px', height: '2px', background: scrolled ? 'var(--primary)' : 'white', alignSelf: 'flex-end' }}></div>
-        </div>
-      </div>
+      </nav>
 
       {/* Mobile Menu Overlay */}
       {mobileMenuOpen && (
-        <div className="mobile-menu-overlay" style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', background: 'var(--primary)', zIndex: 2000, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '30px' }}>
-          <div className="close-btn" onClick={() => setMobileMenuOpen(false)} style={{ position: 'absolute', top: '30px', right: '30px', color: 'white', fontSize: '3rem', cursor: 'pointer' }}>×</div>
+        <motion.div 
+          initial={{ opacity: 0, y: -20 }} 
+          animate={{ opacity: 1, y: 0 }} 
+          style={{ position: 'fixed', inset: 0, background: 'var(--bg-dark)', zIndex: 3000, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '40px' }}
+        >
+          <div onClick={() => setMobileMenuOpen(false)} style={{ position: 'absolute', top: '40px', right: '40px', color: 'white', fontSize: '2rem' }}>×</div>
           {navLinks.map((link) => (
-            <Link key={link.name} to={link.path} className="mobile-nav-link" onClick={() => setMobileMenuOpen(false)} style={{ color: 'white', fontSize: '1.8rem', fontWeight: '700', textTransform: 'uppercase' }}>
-              {link.name}
-            </Link>
+            <Link key={link.name} to={link.path} onClick={() => setMobileMenuOpen(false)} style={{ color: 'white', fontSize: '2rem', fontWeight: '700' }}>{link.name}</Link>
           ))}
-          <button className="btn btn-accent" style={{ marginTop: '20px' }}>Apply Now</button>
-        </div>
+          <button className="btn-lux btn-lux-primary">Apply Now</button>
+        </motion.div>
       )}
 
-    </nav>
+      <style jsx>{`
+        @media (max-width: 1024px) {
+          .nav-links { display: none !important; }
+          .mobile-toggle { display: block !important; }
+        }
+      `}</style>
+    </>
   );
 };
 
