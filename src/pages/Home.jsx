@@ -1,117 +1,155 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const Home = () => {
   const [activeTab, setActiveTab] = useState('vision');
+  const [showAllReviews, setShowAllReviews] = useState(false);
 
   const stats = [
-    { number: '5000+', label: 'Students' },
-    { number: '250+', label: 'Faculty' },
-    { number: '95%', label: 'Placements' },
-    { number: '40+', label: 'Courses Offered' },
+    { number: '10K+', label: 'Global Students', color: '#00d4ff' },
+    { number: '500+', label: 'Annual Placements', color: '#ffd700' },
+    { number: '50+', label: 'Expert Programs', color: '#ff00ff' },
+    { number: 'A++', label: 'NAAC Accredited', color: '#00ff88' },
   ];
 
   const courses = [
-    { title: 'Engineering', icon: '⚙️', desc: 'Cutting-edge engineering programs in various disciplines including CS, ME, and Civil.' },
-    { title: 'Science', icon: '🔬', desc: 'In-depth scientific research and education in Physics, Chemistry, and Biology.' },
-    { title: 'Commerce', icon: '📈', desc: 'Comprehensive business and accounting studies for the modern corporate world.' },
-    { title: 'Arts', icon: '🎨', desc: 'Developing creative thinking through Humanities, Literature, and Social Sciences.' },
-    { title: 'Management', icon: '💼', desc: 'Preparing future leaders with specialized MBA and BBA programs.' },
-    { title: 'Computer Applications', icon: '💻', desc: 'Focused training in software development, data science, and IT management.' },
+    { title: 'Engineering & Tech', icon: '⚡', desc: 'Next-gen engineering programs in AI, Robotics, and Sustainable Infrastructure.' },
+    { title: 'Modern Sciences', icon: '🧬', desc: 'Pioneering research in Biotechnology, Quantum Physics, and Data Science.' },
+    { title: 'Global Business', icon: '🏛️', desc: 'MBA and BBA programs focused on international leadership and digital commerce.' },
+    { title: 'Creative Arts', icon: '🎭', desc: 'Developing human-centric solutions through Design, Media, and Humanities.' },
+    { title: 'Computer Apps', icon: '🚀', desc: 'Elite training in Full-Stack Dev, Cybersecurity, and Cloud Computing.' },
+    { title: 'Law & Governance', icon: '⚖️', desc: 'Shaping future leaders in global law, ethics, and public administration.' },
   ];
 
-  const features = [
-    { title: 'Experienced Faculty', icon: '👨‍🏫', desc: 'Learn from industry veterans and PhD scholars.' },
-    { title: 'Modern Labs', icon: '🧪', desc: 'State-of-the-art facilities for practical learning.' },
-    { title: 'Rich Library', icon: '📚', desc: 'Access to thousands of physical and digital resources.' },
-    { title: 'Placements', icon: '🏢', desc: 'Strong industry ties for excellent career starts.' },
-    { title: 'Scholarships', icon: '🎓', desc: 'Financial support for meritorious and needy students.' },
-    { title: 'Sports Facilities', icon: '⚽', desc: 'World-class infrastructure for physical excellence.' },
-  ];
-
-  const notices = [
-    { date: '20', month: 'May', title: 'Admissions Open 2026-27', desc: 'Applications are invited for UG and PG courses.' },
-    { date: '15', month: 'May', title: 'Final Semester Examination Schedule', desc: 'The timetable for all departments has been released.' },
-    { date: '10', month: 'May', title: 'International Conference on AI', desc: 'Join us for a two-day workshop on emerging tech.' },
-    { date: '05', month: 'May', title: 'Placement Drive: Tech Mahindra', desc: 'Registration starts for final year students.' },
-  ];
-
-  const faculty = [
-    { name: 'Dr. Rajesh Kumar', dept: 'Computer Science', qual: 'Ph.D in Machine Learning', img: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=400' },
-    { name: 'Dr. Anita Sharma', dept: 'Management', qual: 'Ph.D in Organizational Behavior', img: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400' },
-    { name: 'Prof. Vikram Singh', dept: 'Engineering', qual: 'M.Tech in Structural Engineering', img: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=400' },
-    { name: 'Dr. Sunita Patel', dept: 'Science', qual: 'Ph.D in Molecular Biology', img: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=400' },
+  const galleryItems = [
+    { img: '/library.png', title: 'Digital Library', size: 'large' },
+    { img: '/lab.png', title: 'Advanced Research Lab', size: 'small' },
+    { img: 'https://images.unsplash.com/photo-1541829070764-84a7d30dee62?auto=format&fit=crop&q=80&w=600', title: 'Cultural Nexus', size: 'small' },
+    { img: '/sports.png', title: 'Elite Sports Arena', size: 'small' },
+    { img: 'https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&q=80&w=600', title: 'Student Innovation Hub', size: 'small' },
+    { img: '/hero.png', title: 'Main Quadrangle', size: 'large' },
   ];
 
   const testimonials = [
-    { text: "JSPM provided me with the perfect platform to grow both academically and personally. The faculty is incredibly supportive.", name: "Rahul Deshmukh", year: "Batch 2024", img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=100" },
-    { text: "The state-of-the-art labs and industry-aligned curriculum helped me secure a placement at a top MNC.", name: "Priya Chavan", year: "Batch 2023", img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=100" },
-    { text: "Campus life here is vibrant. The balanced focus on academics and extra-curriculars is truly unique.", name: "Siddharth Malhotra", year: "Batch 2025", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=100" },
+    { text: "The global exposure and research-driven curriculum at JSPM changed my perspective on engineering.", name: "Aarav Sharma", year: "Software Engineer @ Google", img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=100" },
+    { text: "Exceptional mentors and state-of-the-art facilities. It's more than a college; it's an ecosystem.", name: "Esha Gupta", year: "Business Analyst @ McKinsey", img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=100" },
+    { text: "Winning the national hackathon with college support was the highlight of my academic journey.", name: "Karan Johar", year: "Data Scientist @ Amazon", img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=100" },
+  ];
+
+  const extraTestimonials = [
+    { text: "The campus life is vibrant and the sports facilities are truly world-class.", name: "Sanya Malhotra", year: "Marketing Lead @ Zomato", img: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=100" },
+    { text: "I found my true passion in research here, thanks to the interdisciplinary approach.", name: "Neil Nitin", year: "PhD Scholar @ MIT", img: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=100" },
   ];
 
   return (
     <main>
       {/* Hero Section */}
-      <section className="hero" style={{ backgroundImage: 'url("/hero.png")' }}>
+      <section className="hero" style={{ backgroundImage: 'url("/hero.png")', backgroundSize: 'cover' }}>
         <div className="hero-overlay"></div>
         <div className="container">
-          <div className="hero-content animate-up">
-            <h1>Empowering Students Through Quality Education</h1>
-            <p>A premier institution dedicated to academic excellence, innovation, and holistic student development. Shaping the leaders of tomorrow with value-based education.</p>
-            <div className="hero-btns">
-              <button className="btn btn-secondary">Apply Now</button>
-              <button className="btn btn-outline" style={{ color: 'white', borderColor: 'white' }}>Explore Courses</button>
+          <div className="hero-content">
+            <motion.h1 
+              initial={{ opacity: 0, y: 30 }} 
+              animate={{ opacity: 1, y: 0 }} 
+              transition={{ duration: 0.8 }}
+            >
+              Defining the Future of <br /> <span style={{ color: 'var(--accent)' }}>Higher Education.</span>
+            </motion.h1>
+            <motion.p 
+              initial={{ opacity: 0, y: 30 }} 
+              animate={{ opacity: 1, y: 0 }} 
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              Experience a world-class academic environment designed for the next generation of global leaders, innovators, and thinkers.
+            </motion.p>
+            <motion.div 
+              className="hero-btns"
+              initial={{ opacity: 0, y: 30 }} 
+              animate={{ opacity: 1, y: 0 }} 
+              transition={{ duration: 0.8, delay: 0.4 }}
+              style={{ display: 'flex', gap: '20px' }}
+            >
+              <button className="btn btn-accent">Apply for Admission</button>
+              <button className="btn btn-outline-white">Explore Programs</button>
+            </motion.div>
+          </div>
+        </div>
+
+        {/* Floating Stats */}
+        <div className="floating-stats">
+          {stats.map((stat, idx) => (
+            <div key={idx} className="stat-item-glass" style={{ animationDelay: `${idx * 0.5}s` }}>
+              <div style={{ fontSize: '1.8rem', fontWeight: '800', color: stat.color }}>{stat.number}</div>
+              <div style={{ fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '1px', opacity: 0.8 }}>{stat.label}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Achievements / Trust Section */}
+      <section className="section-padding" style={{ background: 'var(--bg-light)' }}>
+        <div className="container">
+          <div className="trust-grid">
+            <div className="achievement-card">
+              <h3 className="serif" style={{ fontSize: '2.5rem', color: var(--royal) }}>#1</h3>
+              <p style={{ fontWeight: '600' }}>Private University in Region</p>
+              <p style={{ fontSize: '0.85rem', color: var(--text-muted) }}>Education World Rankings 2026</p>
+            </div>
+            <div className="achievement-card">
+              <h3 className="serif" style={{ fontSize: '2.5rem', color: var(--royal) }}>A++</h3>
+              <p style={{ fontWeight: '600' }}>NAAC Grade</p>
+              <p style={{ fontSize: '0.85rem', color: var(--text-muted) }}>Highest Accreditation Score</p>
+            </div>
+            <div className="achievement-card">
+              <h3 className="serif" style={{ fontSize: '2.5rem', color: var(--royal) }}>500+</h3>
+              <p style={{ fontWeight: '600' }}>Industry Partners</p>
+              <p style={{ fontSize: '0.85rem', color: var(--text-muted) }}>Global Placement Network</p>
+            </div>
+            <div className="achievement-card">
+              <h3 className="serif" style={{ fontSize: '2.5rem', color: var(--royal) }}>20+</h3>
+              <p style={{ fontWeight: '600' }}>Global MoUs</p>
+              <p style={{ fontSize: '0.85rem', color: var(--text-muted) }}>International Exchange Programs</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="stats-section">
-        <div className="container">
-          <div className="stats-grid">
-            {stats.map((stat, idx) => (
-              <div key={idx} className="stat-card animate-up" style={{ animationDelay: `${idx * 0.1}s` }}>
-                <span className="stat-number">{stat.number}</span>
-                <span className="stat-label">{stat.label}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* About Section */}
+      {/* About Section - Collage Layout */}
       <section className="section-padding">
         <div className="container">
-          <div className="about-grid">
-            <div className="about-image animate-up">
-              <img src="/hero.png" alt="College Campus" />
+          <div className="about-split">
+            <div className="image-collage">
+              <div className="collage-item collage-1">
+                <img src="/hero.png" alt="Campus" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              </div>
+              <div className="collage-item collage-2">
+                <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=800" alt="Students" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              </div>
             </div>
-            <div className="about-content animate-up">
-              <div className="section-title" style={{ textAlign: 'left' }}>
-                <h2 className="serif">Welcome to JSPM College</h2>
-                <div className="title-underline" style={{ margin: '10px 0' }}></div>
-              </div>
-              <p>Founded in 1998, JSPM College has been at the forefront of providing quality education in India. We believe in fostering an environment where curiosity is encouraged and excellence is celebrated.</p>
+            <div className="about-text-content">
+              <span style={{ color: 'var(--accent)', fontWeight: '800', textTransform: 'uppercase', letterSpacing: '2px', fontSize: '0.8rem' }}>Establishment 1998</span>
+              <h2 className="serif" style={{ fontSize: '3rem', margin: '15px 0 30px' }}>Excellence Beyond Boundaries.</h2>
+              <p style={{ fontSize: '1.1rem', color: 'var(--text-body)', marginBottom: '30px' }}>
+                At JSPM, we believe that education is not just about degrees, but about discovering your potential. Our handcrafted curriculum merges traditional academic rigour with modern industry requirements.
+              </p>
               
-              <div className="about-tabs">
-                <span className={`tab ${activeTab === 'vision' ? 'active' : ''}`} onClick={() => setActiveTab('vision')}>Our Vision</span>
-                <span className={`tab ${activeTab === 'mission' ? 'active' : ''}`} onClick={() => setActiveTab('mission')}>Our Mission</span>
-              </div>
-              
-              <div className="tab-content">
-                {activeTab === 'vision' ? (
-                  <p>To be a global leader in academic excellence, creating a knowledge-based society through innovation and ethical leadership.</p>
-                ) : (
-                  <p>To provide accessible, high-quality education that empowers students to reach their full potential and contribute meaningfully to society.</p>
-                )}
-              </div>
-
-              <div className="principal-message">
-                <img src="/principal.png" alt="Principal" className="principal-avatar" />
+              <div style={{ display: 'flex', gap: '40px', marginBottom: '40px' }}>
                 <div>
-                  <h4 className="serif">Dr. S. K. Joshi</h4>
-                  <p style={{ fontStyle: 'italic', fontSize: '0.9rem' }}>"Education is the most powerful weapon which you can use to change the world. We welcome you to our community."</p>
+                  <h4 className="serif" style={{ fontSize: '1.5rem', marginBottom: '10px' }}>Vision</h4>
+                  <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>To be a beacon of innovation and ethical leadership in global higher education.</p>
+                </div>
+                <div>
+                  <h4 className="serif" style={{ fontSize: '1.5rem', marginBottom: '10px' }}>Mission</h4>
+                  <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>Empowering students through interdisciplinary learning and cutting-edge research.</p>
+                </div>
+              </div>
+
+              <div className="principal-message" style={{ display: 'flex', gap: '20px', background: 'var(--bg-light)', padding: '30px', borderRadius: 'var(--radius-md)', borderLeft: '5px solid var(--primary)' }}>
+                <img src="/principal.png" alt="Principal" style={{ width: '60px', height: '60px', borderRadius: '50%', objectFit: 'cover' }} />
+                <div>
+                  <p style={{ fontStyle: 'italic', color: 'var(--text-body)', marginBottom: '10px' }}>"We don't just teach subjects; we build characters and inspire change-makers."</p>
+                  <h5 className="serif" style={{ margin: 0 }}>Dr. S. K. Joshi</h5>
+                  <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', margin: 0 }}>Vice Chancellor</p>
                 </div>
               </div>
             </div>
@@ -119,223 +157,145 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Courses Section */}
-      <section className="section-padding" style={{ background: '#fcfcfc' }}>
+      {/* Courses Section - Premium Cards */}
+      <section className="section-padding" style={{ background: '#0a0a0a', color: 'white' }}>
         <div className="container">
-          <div className="section-title">
-            <h2 className="serif">Our Academic Departments</h2>
-            <p>Explore our diverse range of undergraduate and postgraduate programs designed to meet industry standards.</p>
-            <div className="title-underline"></div>
+          <div style={{ textAlign: 'center', marginBottom: '80px' }}>
+            <h2 className="serif" style={{ color: 'white', fontSize: '3.5rem' }}>Elite Programs</h2>
+            <p style={{ opacity: 0.7, maxWidth: '600px', margin: '20px auto 0' }}>Curated academic paths designed to prepare you for the careers of 2030 and beyond.</p>
           </div>
-          <div className="course-grid">
+          <div className="modern-grid">
             {courses.map((course, idx) => (
-              <div key={idx} className="course-card animate-up">
-                <div className="course-icon">{course.icon}</div>
-                <h3 className="serif">{course.title}</h3>
-                <p>{course.desc}</p>
-                <button className="btn btn-outline">Learn More</button>
+              <div key={idx} className="modern-card" style={{ background: 'rgba(255,255,255,0.05)', borderColor: 'rgba(255,255,255,0.1)' }}>
+                <div style={{ fontSize: '3rem', marginBottom: '20px' }}>{course.icon}</div>
+                <h3 className="serif" style={{ color: 'white', fontSize: '1.8rem', marginBottom: '15px' }}>{course.title}</h3>
+                <p style={{ color: 'rgba(255,255,255,0.6)', marginBottom: '30px' }}>{course.desc}</p>
+                <button className="btn" style={{ background: 'transparent', border: '1px solid var(--accent)', color: 'var(--accent)', padding: '8px 20px' }}>Learn More</button>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Why Choose Us */}
+      {/* Gallery - Masonry Layout */}
       <section className="section-padding">
         <div className="container">
-          <div className="section-title">
-            <h2 className="serif">Why Choose Our College?</h2>
-            <p>We provide a comprehensive ecosystem for growth, combining tradition with modern technology.</p>
-            <div className="title-underline"></div>
-          </div>
-          <div className="features-grid">
-            {features.map((feature, idx) => (
-              <div key={idx} className="feature-item animate-up">
-                <div className="feature-icon">{feature.icon}</div>
-                <div className="feature-text">
-                  <h4 className="serif">{feature.title}</h4>
-                  <p>{feature.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Notice Board Section */}
-      <section className="section-padding notice-section">
-        <div className="container">
-          <div className="notice-container">
-            <div className="notice-board animate-up">
-              <h3 className="serif">Notice Board</h3>
-              <div className="notice-list">
-                {notices.map((notice, idx) => (
-                  <div key={idx} className="notice-item">
-                    <div className="notice-date">
-                      {notice.date}
-                      <span>{notice.month}</span>
-                    </div>
-                    <div className="notice-content">
-                      <h4>{notice.title}</h4>
-                      <p>{notice.desc}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <button className="btn btn-primary" style={{ marginTop: '20px' }}>View All Notices</button>
-            </div>
-            
-            <div className="event-sidebar animate-up">
-              <h3 className="serif">Upcoming Events</h3>
-              <div className="sidebar-event">
-                <span className="event-tag">Academic</span>
-                <h4 style={{ color: 'white' }}>Annual Convocation 2026</h4>
-                <p style={{ fontSize: '0.85rem', opacity: '0.8' }}>June 15, 2026 • Main Auditorium</p>
-              </div>
-              <div className="sidebar-event">
-                <span className="event-tag" style={{ background: '#A51C30' }}>Cultural</span>
-                <h4 style={{ color: 'white' }}>Spring Fest: Utsav 2026</h4>
-                <p style={{ fontSize: '0.85rem', opacity: '0.8' }}>June 28, 2026 • Campus Grounds</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Faculty Section */}
-      <section className="section-padding">
-        <div className="container">
-          <div className="section-title">
-            <h2 className="serif">Distinguished Faculty</h2>
-            <p>Our mentors bring years of academic and industrial expertise to the classroom.</p>
-            <div className="title-underline"></div>
-          </div>
-          <div className="faculty-grid">
-            {faculty.map((member, idx) => (
-              <div key={idx} className="faculty-card animate-up">
-                <img src={idx === 0 ? "/faculty1.png" : member.img} alt={member.name} className="faculty-img" />
-                <div className="faculty-info">
-                  <h4 className="serif">{member.name}</h4>
-                  <p className="faculty-dept">{member.dept}</p>
-                  <p className="faculty-qual">{member.qual}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-          <div className="text-center" style={{ marginTop: '40px' }}>
-            <button className="btn btn-outline">View All Faculty</button>
-          </div>
-        </div>
-      </section>
-
-      {/* Campus Life Gallery */}
-      <section className="section-padding" style={{ background: '#fcfcfc' }}>
-        <div className="container">
-          <div className="section-title">
-            <h2 className="serif">Campus Life</h2>
-            <p>A glimpse into the vibrant student life and infrastructure at JSPM.</p>
-            <div className="title-underline"></div>
-          </div>
-          <div className="campus-gallery">
-            <div className="gallery-item large animate-up">
-              <img src="/library.png" alt="Library" />
-              <div className="gallery-overlay">
-                <h4 className="serif">Modern Library</h4>
-                <p>24/7 access to physical and digital books.</p>
-              </div>
-            </div>
-            <div className="gallery-item animate-up">
-              <img src="/lab.png" alt="Lab" />
-              <div className="gallery-overlay">
-                <h4 className="serif">Science Labs</h4>
-                <p>Equipped with latest research tools.</p>
-              </div>
-            </div>
-            <div className="gallery-item animate-up">
-              <img src="https://images.unsplash.com/photo-1541829070764-84a7d30dee62?auto=format&fit=crop&q=80&w=400" alt="Cultural" />
-              <div className="gallery-overlay">
-                <h4 className="serif">Cultural Events</h4>
-                <p>Celebrating diversity and talent.</p>
-              </div>
-            </div>
-            <div className="gallery-item animate-up">
-              <img src="/sports.png" alt="Sports" />
-              <div className="gallery-overlay">
-                <h4 className="serif">Sports Ground</h4>
-                <p>Promoting health and teamwork.</p>
-              </div>
-            </div>
-            <div className="gallery-item animate-up">
-              <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&q=80&w=400" alt="Cafeteria" />
-              <div className="gallery-overlay">
-                <h4 className="serif">Student Lounge</h4>
-                <p>Spaces for collaboration and relaxation.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Testimonials */}
-      <section className="section-padding">
-        <div className="container">
-          <div className="section-title">
-            <h2 className="serif">What Our Students Say</h2>
-            <div className="title-underline"></div>
-          </div>
-          <div className="testimonial-grid">
-            {testimonials.map((t, idx) => (
-              <div key={idx} className="testimonial-card animate-up">
-                <span className="quote-icon">"</span>
-                <p className="testimonial-text">{t.text}</p>
-                <div className="testimonial-author">
-                  <img src={t.img} alt={t.name} className="author-img" />
-                  <div className="author-info">
-                    <h5 className="serif">{t.name}</h5>
-                    <p>{t.year}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-          <div className="text-center" style={{ marginTop: '40px' }}>
-            <button className="btn btn-outline">View More Reviews</button>
-          </div>
-        </div>
-      </section>
-
-      {/* Placement Section */}
-      <section className="placement-banner">
-        <div className="container">
-          <div className="placement-flex animate-up">
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '60px' }}>
             <div>
-              <h2 className="serif" style={{ color: 'white', marginBottom: '10px' }}>Global Career Opportunities</h2>
-              <p style={{ opacity: '0.8' }}>We ensure our students are industry-ready with continuous training and placement support.</p>
+              <h2 className="serif" style={{ fontSize: '3rem' }}>Campus Life in Focus</h2>
+              <p style={{ color: 'var(--text-muted)', marginTop: '10px' }}>Experience the energy and vibrancy of our world-class campus.</p>
             </div>
-            <div className="placement-stats">
-              <div className="placement-stat">
-                <h3>12 LPA</h3>
-                <p style={{ fontSize: '0.8rem' }}>Highest Package</p>
-              </div>
-              <div className="placement-stat">
-                <h3>500+</h3>
-                <p style={{ fontSize: '0.8rem' }}>Recruiters</p>
-              </div>
-            </div>
+            <button className="btn btn-outline">View Full Gallery</button>
           </div>
-          
-          <div className="recruiter-logos animate-up">
-            {/* Using text labels as placeholders for recruiter logos */}
-            <span style={{ color: 'white', fontSize: '1.2rem', fontWeight: '800' }}>GOOGLE</span>
-            <span style={{ color: 'white', fontSize: '1.2rem', fontWeight: '800' }}>MICROSOFT</span>
-            <span style={{ color: 'white', fontSize: '1.2rem', fontWeight: '800' }}>TATA</span>
-            <span style={{ color: 'white', fontSize: '1.2rem', fontWeight: '800' }}>INFOSYS</span>
-            <span style={{ color: 'white', fontSize: '1.2rem', fontWeight: '800' }}>WIPRO</span>
-            <span style={{ color: 'white', fontSize: '1.2rem', fontWeight: '800' }}>AMAZON</span>
+          <div className="masonry">
+            {galleryItems.map((item, idx) => (
+              <div key={idx} className={`masonry-item ${item.size === 'large' ? 'large' : ''}`} style={{ gridColumn: item.size === 'large' ? 'span 2' : 'span 1', height: '350px' }}>
+                <img src={item.img} alt={item.title} />
+                <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '30px', background: 'linear-gradient(transparent, rgba(0,0,0,0.8))', color: 'white' }}>
+                  <h4 className="serif" style={{ margin: 0, fontSize: '1.4rem' }}>{item.title}</h4>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
+      {/* Notice Board - Modern Official */}
+      <section className="section-padding dark-section">
+        <div className="container">
+          <div className="about-split">
+            <div>
+              <h2 className="serif" style={{ fontSize: '3rem', marginBottom: '30px' }}>Official <br />Announcements</h2>
+              <p style={{ opacity: 0.7, marginBottom: '40px' }}>Stay updated with the latest institutional notices, examination schedules, and academic circulars.</p>
+              <button className="btn btn-accent">Visit Student Portal</button>
+            </div>
+            <div className="notice-glass">
+              {[1, 2, 3].map((n) => (
+                <div key={n} style={{ padding: '25px 0', borderBottom: '1px solid rgba(255,255,255,0.1)', display: 'flex', gap: '25px', alignItems: 'center' }}>
+                  <div style={{ background: 'var(--accent)', color: 'var(--primary)', padding: '10px', borderRadius: '8px', textAlign: 'center', minWidth: '60px' }}>
+                    <div style={{ fontWeight: '800', fontSize: '1.2rem' }}>2{n}</div>
+                    <div style={{ fontSize: '0.6rem', fontWeight: '700' }}>MAY</div>
+                  </div>
+                  <div>
+                    <h4 style={{ color: 'white', fontSize: '1.1rem', marginBottom: '5px' }}>{n === 1 ? 'Admissions Open for PhD 2026' : n === 2 ? 'Semester Exam Results Declared' : 'International Seminar on Tech'}</h4>
+                    <p style={{ fontSize: '0.85rem', opacity: 0.6 }}>Updated on 10th May 2026 • Circular No. 421</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials - Glassmorphism */}
+      <section className="section-padding" style={{ background: 'var(--bg-light)' }}>
+        <div className="container">
+          <div style={{ textAlign: 'center', marginBottom: '80px' }}>
+            <h2 className="serif" style={{ fontSize: '3.5rem' }}>Our Alumni Network</h2>
+            <p style={{ color: 'var(--text-muted)' }}>Stories of success from across the globe.</p>
+          </div>
+          <div className="trust-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(380px, 1fr))' }}>
+            <AnimatePresence>
+              {(showAllReviews ? [...testimonials, ...extraTestimonials] : testimonials).map((t, idx) => (
+                <motion.div 
+                  key={idx} 
+                  initial={{ opacity: 0, scale: 0.9 }} 
+                  animate={{ opacity: 1, scale: 1 }} 
+                  className="achievement-card" 
+                  style={{ textAlign: 'left', background: 'white' }}
+                >
+                  <p style={{ fontStyle: 'italic', fontSize: '1.05rem', color: 'var(--text-body)', marginBottom: '30px' }}>"{t.text}"</p>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
+                    <img src={t.img} alt={t.name} style={{ width: '50px', height: '50px', borderRadius: '50%', objectFit: 'cover' }} />
+                    <div>
+                      <h5 className="serif" style={{ margin: 0, fontSize: '1.1rem' }}>{t.name}</h5>
+                      <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', margin: 0 }}>{t.year}</p>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </div>
+          {!showAllReviews && (
+            <div style={{ textAlign: 'center', marginTop: '60px' }}>
+              <button className="btn btn-primary" onClick={() => setShowAllReviews(true)}>View More Reviews</button>
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* Placement Section - Modern Infographic */}
+      <section className="section-padding dark-section" style={{ background: '#000814' }}>
+        <div className="container">
+          <div className="infographic">
+            <div className="info-item">
+              <h3>18 LPA</h3>
+              <p style={{ opacity: 0.6, fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '1px' }}>Highest Package Offered</p>
+            </div>
+            <div className="info-item">
+              <h3>98%</h3>
+              <p style={{ opacity: 0.6, fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '1px' }}>Placement Record 2025</p>
+            </div>
+            <div className="info-item">
+              <h3>200+</h3>
+              <p style={{ opacity: 0.6, fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '1px' }}>Fortune 500 Recruiters</p>
+            </div>
+            <div className="info-item">
+              <h3>$1M</h3>
+              <p style={{ opacity: 0.6, fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '1px' }}>Total Startup Funding</p>
+            </div>
+          </div>
+
+          <div style={{ marginTop: '80px', display: 'flex', flexWrap: 'wrap', gap: '60px', justifyContent: 'center', filter: 'brightness(0) invert(1)', opacity: 0.3 }}>
+            <h2 className="serif">GOOGLE</h2>
+            <h2 className="serif">MICROSOFT</h2>
+            <h2 className="serif">TATA</h2>
+            <h2 className="serif">INFOSYS</h2>
+            <h2 className="serif">AMAZON</h2>
+            <h2 className="serif">APPLE</h2>
+          </div>
+        </div>
+      </section>
     </main>
   );
 };
