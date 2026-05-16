@@ -4,7 +4,7 @@ export default function Loader() {
   return (
     <motion.div
       className="fixed inset-0 z-[9999] flex flex-col items-center justify-center"
-      style={{ background: '#0A0514' }}
+      style={{ background: '#FFFFFF' }}
       initial={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
@@ -13,21 +13,21 @@ export default function Loader() {
         className="spin-ring mb-6"
         style={{
           width: 80, height: 80, borderRadius: '50%',
-          border: '4px solid rgba(109,40,217,0.2)',
-          borderTopColor: '#F59E0B',
+          border: '4px solid #F0F0F0',
+          borderTopColor: '#002147',
         }}
       />
       <motion.h1
-        style={{ color: '#EDE9F8', fontFamily: 'Plus Jakarta Sans', fontWeight: 800, fontSize: '1.25rem', textAlign: 'center' }}
+        style={{ color: '#002147', fontFamily: 'Playfair Display', fontWeight: 800, fontSize: '1.5rem', textAlign: 'center' }}
         initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
       >
-        SV College
+        JSPM COLLEGE
       </motion.h1>
       <motion.p
-        style={{ color: '#D97706', fontSize: '0.8rem', marginTop: 4, fontWeight: 600, letterSpacing: '0.1em' }}
+        style={{ color: '#B8860B', fontSize: '0.8rem', marginTop: 4, fontWeight: 600, letterSpacing: '0.2em' }}
         initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 }}
       >
-        LOADING...
+        EXCELLENCE IN EDUCATION
       </motion.p>
     </motion.div>
   )

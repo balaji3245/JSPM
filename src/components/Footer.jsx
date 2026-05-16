@@ -1,150 +1,73 @@
-import { Link } from 'react-router-dom'
-import { GraduationCap, Phone, Mail, MapPin, Share2, MessageCircle, Tv2, Camera } from 'lucide-react'
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-export default function Footer({ darkMode }) {
-  const bg = darkMode ? '#05020A' : '#1E0A4C'
-  const textColor = 'rgba(255,255,255,0.8)'
-  const headColor = 'white'
-  const accent = '#D97706'
-  const border = darkMode ? '#1A0D36' : 'rgba(255,255,255,0.1)'
-
+const Footer = () => {
   return (
-    <footer style={{ background: bg, color: textColor, paddingTop: 64, paddingBottom: 24 }}>
-      <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 24px' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 40, marginBottom: 48 }}>
-          {/* Brand */}
-          <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
-              <div style={{ width: 42, height: 42, borderRadius: 10, background: `linear-gradient(135deg, ${accent}, #EA580C)`, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <GraduationCap size={22} color="white" />
-              </div>
-              <div>
-                <div style={{ fontWeight: 800, fontSize: '1rem' }}>SV College</div>
-                <div style={{ fontSize: '0.7rem', color: '#F97316', fontWeight: 600 }}>MIDC, Latur</div>
-              </div>
-            </div>
-            <p style={{ color: '#94a3b8', fontSize: '0.87rem', lineHeight: 1.7, marginBottom: 20 }}>
-              Empowering students through quality education and innovation since our founding. A premier institution committed to academic excellence.
-            </p>
-            <div style={{ display: 'flex', gap: 10 }}>
-              {[
-                { icon: Share2, label: 'Facebook' },
-                { icon: Camera, label: 'Instagram' },
-                { icon: MessageCircle, label: 'Twitter' },
-                { icon: Tv2, label: 'YouTube' },
-              ].map(({ icon: Icon, label }) => (
-                <a
-                  key={label}
-                  href="#"
-                  aria-label={label}
-                  style={{
-                    width: 36, height: 36, borderRadius: 8,
-                    background: 'rgba(255,255,255,0.08)',
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    color: '#94a3b8', transition: 'all 0.2s ease',
-                    textDecoration: 'none',
-                  }}
-                  onMouseEnter={e => { e.currentTarget.style.background = 'rgba(249,115,22,0.2)'; e.currentTarget.style.color = '#F97316' }}
-                  onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.08)'; e.currentTarget.style.color = '#94a3b8' }}
-                >
-                  <Icon size={16} />
-                </a>
-              ))}
+    <footer>
+      <div className="container">
+        <div className="footer-grid">
+          <div className="footer-col footer-about">
+            <h2 className="serif" style={{ color: 'white', marginBottom: '10px' }}>JSPM COLLEGE</h2>
+            <p>Empowering minds and shaping futures since 1998. Dedicated to providing world-class education with a focus on moral values and technical excellence.</p>
+            <div className="social-links" style={{ display: 'flex', gap: '15px', marginTop: '20px' }}>
+              {/* Using placeholders for social icons */}
+              <span style={{ background: 'rgba(255,255,255,0.1)', width: '35px', height: '35px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyCenter: 'center', cursor: 'pointer' }}>FB</span>
+              <span style={{ background: 'rgba(255,255,255,0.1)', width: '35px', height: '35px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyCenter: 'center', cursor: 'pointer' }}>TW</span>
+              <span style={{ background: 'rgba(255,255,255,0.1)', width: '35px', height: '35px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyCenter: 'center', cursor: 'pointer' }}>LI</span>
+              <span style={{ background: 'rgba(255,255,255,0.1)', width: '35px', height: '35px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyCenter: 'center', cursor: 'pointer' }}>IG</span>
             </div>
           </div>
 
-          {/* Quick Links */}
-          <div>
-            <h3 style={{ fontWeight: 700, marginBottom: 16, color: 'white', fontSize: '0.95rem' }}>Quick Links</h3>
-            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 10 }}>
-              {[
-                { label: 'Home', href: '/' },
-                { label: 'About Us', href: '/about' },
-                { label: 'Faculty', href: '/faculty' },
-                { label: 'IQAC', href: '/iqac' },
-                { label: 'Gallery', href: '/gallery' },
-                { label: 'Notices', href: '/notices' },
-              ].map(link => (
-                <li key={link.label}>
-                  <Link
-                    to={link.href}
-                    style={{ color: '#94a3b8', textDecoration: 'none', fontSize: '0.87rem', transition: 'color 0.2s ease' }}
-                    onMouseEnter={e => e.currentTarget.style.color = '#F97316'}
-                    onMouseLeave={e => e.currentTarget.style.color = '#94a3b8'}
-                  >
-                    → {link.label}
-                  </Link>
-                </li>
-              ))}
+          <div className="footer-col">
+            <h4>Quick Links</h4>
+            <ul className="footer-links">
+              <li><Link to="/about">About Us</Link></li>
+              <li><Link to="/courses">Courses</Link></li>
+              <li><Link to="/admissions">Admissions</Link></li>
+              <li><Link to="/faculty">Our Faculty</Link></li>
+              <li><Link to="/gallery">Campus Life</Link></li>
+              <li><Link to="/notices">Notice Board</Link></li>
             </ul>
           </div>
 
-          {/* Courses */}
-          <div>
-            <h3 style={{ fontWeight: 700, marginBottom: 16, color: 'white', fontSize: '0.95rem' }}>Programmes</h3>
-            <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 10 }}>
-              {['B.A.', 'B.Com', 'B.Sc', 'B.Sc (Computer Science)', 'M.A.', 'M.Com'].map(course => (
-                <li key={course}>
-                  <Link
-                    to="/courses"
-                    style={{ color: '#94a3b8', textDecoration: 'none', fontSize: '0.87rem', transition: 'color 0.2s ease' }}
-                    onMouseEnter={e => e.currentTarget.style.color = '#F97316'}
-                    onMouseLeave={e => e.currentTarget.style.color = '#94a3b8'}
-                  >
-                    → {course}
-                  </Link>
-                </li>
-              ))}
+          <div className="footer-col">
+            <h4>Support</h4>
+            <ul className="footer-links">
+              <li><a href="#">Student Portal</a></li>
+              <li><a href="#">Parent Portal</a></li>
+              <li><a href="#">E-Learning (LMS)</a></li>
+              <li><a href="#">Scholarships</a></li>
+              <li><a href="#">Library Catalog</a></li>
+              <li><a href="#">Privacy Policy</a></li>
             </ul>
           </div>
 
-          {/* Contact */}
-          <div>
-            <h3 style={{ fontWeight: 700, marginBottom: 16, color: 'white', fontSize: '0.95rem' }}>Contact Us</h3>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
-              <div style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
-                <MapPin size={16} color="#F97316" style={{ marginTop: 2, flexShrink: 0 }} />
-                <span style={{ color: '#94a3b8', fontSize: '0.87rem', lineHeight: 1.6 }}>
-                  MIDC Area, Latur - 413531,<br />Maharashtra, India
-                </span>
-              </div>
-              <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
-                <Phone size={16} color="#F97316" />
-                <a href="tel:+912382255555" style={{ color: '#94a3b8', fontSize: '0.87rem', textDecoration: 'none' }}>
-                  +91 2382 255555
-                </a>
-              </div>
-              <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
-                <Mail size={16} color="#F97316" />
-                <a href="mailto:info@svclatur.edu.in" style={{ color: '#94a3b8', fontSize: '0.87rem', textDecoration: 'none' }}>
-                  info@svclatur.edu.in
-                </a>
-              </div>
-            </div>
-            <Link to="/admissions">
-              <button className="btn-primary" style={{ marginTop: 20, fontSize: '0.85rem', padding: '10px 20px', width: '100%' }}>
-                Apply for Admission 2025
-              </button>
-            </Link>
+          <div className="footer-col">
+            <h4>Contact Info</h4>
+            <ul className="contact-info">
+              <li>
+                <span className="contact-icon">📍</span>
+                <span>123 Knowledge Park, Education Hub,<br />Pune, Maharashtra - 411001</span>
+              </li>
+              <li>
+                <span className="contact-icon">📞</span>
+                <span>+91 20 1234 5678<br />+91 98765 43210</span>
+              </li>
+              <li>
+                <span className="contact-icon">✉️</span>
+                <span>info@jspmcollege.edu<br />admissions@jspmcollege.edu</span>
+              </li>
+            </ul>
           </div>
         </div>
 
-        {/* Divider */}
-        <div style={{ borderTop: '1px solid rgba(255,255,255,0.08)', paddingTop: 24, display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 12 }}>
-          <p style={{ color: '#475569', fontSize: '0.82rem' }}>
-            © {new Date().getFullYear()} Swami Vivekanand College, MIDC, Latur. All rights reserved.
-          </p>
-          <div style={{ display: 'flex', gap: 20 }}>
-            {['Privacy Policy', 'Terms of Use', 'RTI'].map(item => (
-              <a key={item} href="#" style={{ color: '#475569', fontSize: '0.82rem', textDecoration: 'none' }}
-                onMouseEnter={e => e.currentTarget.style.color = '#F97316'}
-                onMouseLeave={e => e.currentTarget.style.color = '#475569'}>
-                {item}
-              </a>
-            ))}
-          </div>
+        <div className="footer-bottom">
+          <p>&copy; {new Date().getFullYear()} JSPM College. All Rights Reserved. | Designed with Academic Excellence</p>
+          <p>Institutional Helpline: 1800-123-4567</p>
         </div>
       </div>
     </footer>
-  )
-}
+  );
+};
+
+export default Footer;
