@@ -31,7 +31,7 @@ const Navbar = () => {
           <div className="logo-icon" style={{ width: '45px', height: '45px', background: 'var(--accent)', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: '800', color: 'var(--primary)' }}>J</div>
           <div className="logo-text">
             <h2 className="serif" style={{ fontSize: '1.4rem', color: scrolled ? 'var(--primary)' : 'white', margin: 0 }}>JSPM</h2>
-            <p style={{ fontSize: '0.65rem', color: scrolled ? 'var(--text-muted)' : 'rgba(255,255,255,0.7)', textTransform: uppercase, letterSpacing: '1px', margin: 0 }}>University</p>
+            <p style={{ fontSize: '0.65rem', color: scrolled ? 'var(--text-muted)' : 'rgba(255,255,255,0.7)', textTransform: 'uppercase', letterSpacing: '1px', margin: 0 }}>University</p>
           </div>
         </Link>
 
@@ -59,7 +59,7 @@ const Navbar = () => {
 
       {/* Mobile Menu Overlay */}
       {mobileMenuOpen && (
-        <div className="mobile-menu-overlay" style={{ position: fixed, top: 0, left: 0, width: '100%', height: '100%', background: 'var(--primary)', z-index: 2000, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '30px' }}>
+        <div className="mobile-menu-overlay" style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', background: 'var(--primary)', zIndex: 2000, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', gap: '30px' }}>
           <div className="close-btn" onClick={() => setMobileMenuOpen(false)} style={{ position: 'absolute', top: '30px', right: '30px', color: 'white', fontSize: '3rem', cursor: 'pointer' }}>×</div>
           {navLinks.map((link) => (
             <Link key={link.name} to={link.path} className="mobile-nav-link" onClick={() => setMobileMenuOpen(false)} style={{ color: 'white', fontSize: '1.8rem', fontWeight: '700', textTransform: 'uppercase' }}>

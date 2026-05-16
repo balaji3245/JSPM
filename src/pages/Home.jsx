@@ -91,22 +91,22 @@ const Home = () => {
         <div className="container">
           <div className="trust-grid">
             <div className="achievement-card">
-              <h3 className="serif" style={{ fontSize: '2.5rem', color: var(--royal) }}>#1</h3>
+              <h3 className="serif" style={{ fontSize: '2.5rem', color: 'var(--royal)' }}>#1</h3>
               <p style={{ fontWeight: '600' }}>Private University in Region</p>
               <p style={{ fontSize: '0.85rem', color: var(--text-muted) }}>Education World Rankings 2026</p>
             </div>
             <div className="achievement-card">
-              <h3 className="serif" style={{ fontSize: '2.5rem', color: var(--royal) }}>A++</h3>
+              <h3 className="serif" style={{ fontSize: '2.5rem', color: 'var(--royal)' }}>A++</h3>
               <p style={{ fontWeight: '600' }}>NAAC Grade</p>
               <p style={{ fontSize: '0.85rem', color: var(--text-muted) }}>Highest Accreditation Score</p>
             </div>
             <div className="achievement-card">
-              <h3 className="serif" style={{ fontSize: '2.5rem', color: var(--royal) }}>500+</h3>
+              <h3 className="serif" style={{ fontSize: '2.5rem', color: 'var(--royal)' }}>500+</h3>
               <p style={{ fontWeight: '600' }}>Industry Partners</p>
               <p style={{ fontSize: '0.85rem', color: var(--text-muted) }}>Global Placement Network</p>
             </div>
             <div className="achievement-card">
-              <h3 className="serif" style={{ fontSize: '2.5rem', color: var(--royal) }}>20+</h3>
+              <h3 className="serif" style={{ fontSize: '2.5rem', color: 'var(--royal)' }}>20+</h3>
               <p style={{ fontWeight: '600' }}>Global MoUs</p>
               <p style={{ fontSize: '0.85rem', color: var(--text-muted) }}>International Exchange Programs</p>
             </div>
